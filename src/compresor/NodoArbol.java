@@ -12,8 +12,10 @@ public class NodoArbol {
     private NodoArbol next; 
     private NodoArbol rightSon;
     private NodoArbol leftSon;
+    private NodoArbol parent;
     private boolean isVisited;
     private String bit_code = "";
+    private NodoArbol raiz = null;
     
     public NodoArbol(){
         
@@ -24,6 +26,10 @@ public class NodoArbol {
         this.frequency = frequency;
         this.rightSon = rightSon;
         this.leftSon = leftSon;
+    }
+    
+    public NodoArbol(NodoArbol n){
+        raiz = n;
     }
     
     public NodoArbol(String character, int frequency, NodoArbol parentORnext){
@@ -87,9 +93,29 @@ public class NodoArbol {
     public void setBit_code(String bit_code) {
         this.bit_code = bit_code;
     }
+
+    public NodoArbol getParent() {
+        return parent;
+    }
+
+    public void setParent(NodoArbol parent) {
+        this.parent = parent;
+    }
+   
+    @Override
+    public String toString(){
+        return this.getCharacters() + this.getFrequency();
+    }
     
+     public void recorridoPre_Order(){
     
-    
-    
+        System.out.println(raiz.toString());
+        if(raiz.getLeftSon() != null){
+            raiz.recorridoPre_Order();
+        }
+        if(raiz.getRightSon() != null){
+            raiz.recorridoPre_Order();
+        }
+    }
     
 }
