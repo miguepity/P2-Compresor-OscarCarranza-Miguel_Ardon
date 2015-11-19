@@ -71,7 +71,7 @@ public class main extends javax.swing.JFrame {
 
     private void txt_commandKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_commandKeyPressed
         try {
-            if (evt.getKeyCode() == KeyEvent.VK_SHIFT) {
+            if (evt.getKeyCode() == KeyEvent.VK_F1) {
                 int cont = txt_command.getText().length() - 1;
                 while (txt_command.getText().charAt(cont) != '&') {
                     cont--;
@@ -97,7 +97,7 @@ public class main extends javax.swing.JFrame {
                     txt_command.append("\n");
                     txt_command.append(miDir.getCanonicalPath());
                     txt_command.append("\n& ");
-                    contfile=0;
+                    contfile = 0;
 
                 } else if (tem.get(comando).startsWith("cd") == true) {
                     try {
@@ -126,23 +126,31 @@ public class main extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         txt_command.append(ex.getMessage());
                     }
-                }else if(tem.get(comando).startsWith("mkdir") == true){
+                } else if (tem.get(comando).startsWith("mkdir") == true) {
                     boolean bool = false;
-                    File tempo = new File(miDir.toString()+tem.get(comando).substring(5, tem.get(comando).length()));
+                    File tempo = new File(miDir.toString() + tem.get(comando).substring(5, tem.get(comando).length()));
                     bool = tempo.mkdir();
-                    if(bool==false){
+                    if (bool == false) {
                         txt_command.append("Directory not created");
                         txt_command.append("\n");
                         txt_command.append(miDir.getCanonicalPath());
                         txt_command.append("\n& ");
-                        
-                    }else if(bool==true){
+
+                    } else if (bool == true) {
                         txt_command.append("Directory created");
                         txt_command.append("\n");
                         txt_command.append(miDir.getCanonicalPath());
                         txt_command.append("\n& ");
 
                     }
+                } else if (tem.get(comando).startsWith("compres") == true) {
+
+                } else if (tem.get(comando).startsWith("descomp") == true) {
+
+                } else {
+                    txt_command.append("\n");
+                    txt_command.append(miDir.getCanonicalPath());
+                    txt_command.append("\n& ");
                 }
             }
         } catch (Exception e) {
